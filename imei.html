@@ -1,0 +1,1359 @@
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bea Cukai - Cek IMEI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Basic Resets & Global Styles */
+        :root {
+            --primary-blue: #0A3D62; /* Darker, official blue */
+            --secondary-blue: #1E90FF; /* Lighter, accent blue */
+            --accent-green: #32CD32; /* For CTAs, etc. */
+            --text-dark: #333;
+            --text-light: #f4f4f4;
+            --bg-light: #f9f9f9;
+            --border-color: #eee;
+            --shadow-light: 0 4px 10px rgba(0,0,0,0.08);
+
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #fff;
+            -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--secondary-blue);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--primary-blue);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            color: var(--primary-blue);
+            line-height: 1.2;
+            margin-bottom: 0.5em;
+        }
+
+        h1 { font-size: 2.8em; }
+        h2 { font-size: 2.2em; }
+        h3 { font-size: 1.6em; }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+            cursor: pointer;
+            font-size: 0.95em;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+            border: 2px solid var(--primary-blue);
+        }
+        .btn-primary:hover {
+            background-color: var(--secondary-blue);
+            border-color: var(--secondary-blue);
+            color: var(--text-light);
+        }
+
+        .btn-secondary {
+            background-color: var(--accent-green);
+            color: var(--text-light);
+            border: 2px solid var(--accent-green);
+        }
+        .btn-secondary:hover {
+            background-color: darken(var(--accent-green), 10%); /* conceptual darken */
+            border-color: darken(var(--accent-green), 10%);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+        .btn-outline:hover {
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+        }
+
+        .btn-report {
+            background-color: #FF4500; /* Orange-red for urgency */
+            color: var(--text-light);
+            border: 2px solid #FF4500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-report:hover {
+            background-color: #CD3700;
+            border-color: #CD3700;
+        }
+
+
+        /* Header */
+        .main-header {
+            box-shadow: var(--shadow-light);
+            background-color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+            padding: 8px 0;
+            font-size: 0.85em;
+        }
+
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-left, .top-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .top-left .logo {
+            height: 35px; /* Adjust as needed */
+            margin-right: 10px;
+        }
+
+        .top-left .agency-name {
+            font-weight: 500;
+        }
+
+        .top-right a {
+            color: var(--text-light);
+        }
+        .top-right a:hover {
+            opacity: 0.8;
+        }
+
+        .top-right .hotline {
+            font-weight: 500;
+        }
+        .top-right .hotline i {
+            margin-right: 5px;
+        }
+
+        .lang-toggle a {
+            font-weight: 600;
+        }
+        .lang-toggle a.active {
+            text-decoration: underline;
+        }
+
+        .search-toggle {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.1em;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .main-nav {
+            padding: 15px 0;
+        }
+
+        .main-nav .container ul {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .main-nav ul li a {
+            color: var(--primary-blue);
+            font-weight: 600;
+            padding: 10px 0;
+            display: block;
+            position: relative;
+        }
+
+        .main-nav ul li a:hover {
+            color: var(--secondary-blue);
+        }
+
+        .main-nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-blue);
+            left: 0;
+            bottom: 0;
+            transition: width 0.3s ease;
+        }
+
+        .main-nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .main-nav .btn-login {
+            background-color: var(--secondary-blue);
+            color: var(--text-light);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+        .main-nav .btn-login:hover {
+            background-color: var(--primary-blue);
+            color: var(--text-light); /* Maintain text color on hover */
+        }
+        .main-nav .btn-login::after { /* Remove underline for button */
+            display: none;
+        }
+
+        /* Mega Menu */
+        .main-nav .has-submenu {
+            position: relative;
+        }
+
+        .mega-menu {
+            display: none; /* Hidden by default, shown via JS on hover */
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #fff;
+            box-shadow: var(--shadow-light);
+            border-top: 3px solid var(--secondary-blue);
+            padding: 30px 40px; /* Increased padding slightly for more internal space */
+            min-width: 980px; /* **Increased significantly again to ensure ample space** */
+            border-radius: 0 0 8px 8px;
+            display: flex; /* Use flexbox for column layout */
+            flex-wrap: nowrap; /* Prevent columns from wrapping prematurely on desktop */
+            justify-content: center; /* Center columns, allowing natural spacing from gap */
+            gap: 60px; /* **Increased gap even more for clear separation** */
+            z-index: 999;
+            box-sizing: border-box; /* Crucial: ensure padding is included in width calculation */
+        }
+
+        .mega-menu-column {
+            flex: 0 0 400px; /* **More aggressive fixed width for each column** */
+            /* This ensures each column is exactly 400px wide and won't shrink below that. */
+            /* If content is wider than 400px, it will cause overflow within the column. */
+            /* If you want columns to be equal width but fill remaining space, use flex: 1 1 0%; */
+            /* But for avoiding overlap with known long text, fixed width is more reliable. */
+        }
+
+        .mega-menu-column h3 {
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+            white-space: nowrap; /* Prevent heading text from wrapping */
+        }
+
+        .mega-menu-column ul li {
+            margin-bottom: 10px; /* Increased spacing between list items */
+        }
+
+        .mega-menu-column ul li a {
+            color: var(--text-dark);
+            font-weight: 400;
+            padding: 5px 0;
+            display: flex; /* Use flexbox for icon and text alignment */
+            align-items: center;
+            gap: 15px; /* Space between icon and text */
+            /* white-space: nowrap; is crucial here if you want to prevent text wrapping
+            and ensure icons and text stay on one line, provided the column is wide enough.
+            Given the consistent overlap, let's enforce it here and ensure column width. */
+            white-space: nowrap; /* **Enforce no wrapping for the link text + icon** */
+            min-width: 0; /* Important for flex items to prevent overflow if content is huge */
+        }
+        .mega-menu-column ul li a:hover {
+            color: var(--secondary-blue);
+            text-decoration: underline;
+        }
+        .mega-menu-column ul li a::after {
+            display: none;
+        }
+
+        .mega-menu-column ul li a i {
+            color: var(--secondary-blue);
+            font-size: 1.25em;
+            flex-shrink: 0; /* Prevent icon from shrinking */
+            width: 30px; /* **Slightly larger fixed width for icons for better alignment** */
+            text-align: center; /* Center icon within its fixed width */
+        }
+
+        /* No explicit span needed if white-space: nowrap is on the 'a' tag.
+        If you remove white-space: nowrap from 'a', then wrap text in span and apply white-space: normal to span. */
+
+
+        /* Existing responsive adjustments for mega menu for smaller screens */
+        @media (max-width: 992px) {
+            .mega-menu {
+                min-width: unset;
+                width: 95%; /* Make it slightly wider on tablets/mobiles if needed */
+                left: 50%;
+                transform: translateX(-50%);
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+            .mega-menu-column {
+                min-width: unset;
+                flex: 1 1 auto; /* Allow columns to grow/shrink naturally when stacked */
+            }
+            .mega-menu-column ul li a {
+                white-space: normal; /* Allow text to wrap on smaller screens */
+            }
+        }
+
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://cdn0-production-images-kly.akamaized.net/bWIpXV2_FGr3mv8gq9SSDWt18rY=/1200x675/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/4865279/original/045722400_1718540358-bea_cukai.jpg') no-repeat center center/cover;
+            color: var(--text-light);
+            padding: 120px 0;
+            text-align: center;
+            min-height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content h1 {
+            color: var(--text-light);
+            font-size: 3.5em;
+            margin-bottom: 15px;
+        }
+
+        .hero-content p {
+            font-size: 1.2em;
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Quick Access Section */
+        .quick-access-section {
+            padding: 80px 0; /* Menambah padding di bagian atas/bawah agar lebih lega */
+            text-align: center;
+            background-color: var(--bg-light);
+        }
+
+        .quick-access-section h2 {
+            margin-bottom: 50px; /* Memberi lebih banyak ruang di bawah judul */
+            font-size: 2.5em; /* Membuat judul lebih menonjol */
+        }
+
+        .quick-access-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* **Mengatur 3 kolom yang sama lebarnya** */
+            gap: 30px; /* **Menambah jarak antar kartu** */
+            max-width: 1080px; /* Membatasi lebar maksimum grid agar tidak terlalu lebar di layar besar */
+            margin: 0 auto; /* Memposisikan grid di tengah */
+        }
+
+        .access-card {
+            background-color: #fff;
+            padding: 40px 25px; /* **Menambah padding untuk membuat kartu lebih besar** */
+            border-radius: 12px; /* Sedikit memperhalus sudut kartu */
+            box-shadow: var(--shadow-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* Memusatkan konten (ikon & teks) secara vertikal */
+            gap: 20px; /* **Menambah jarak antara ikon dan teks di dalam kartu** */
+            color: var(--primary-blue);
+            font-weight: 600;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            min-height: 220px; /* **Menjamin tinggi minimum kartu agar konsisten dan eye-catching** */
+        }
+
+        .access-card:hover {
+            transform: translateY(-8px); /* Efek hover yang lebih kentara */
+            box-shadow: 0 12px 25px rgba(0,0,0,0.18); /* Bayangan yang lebih kuat saat hover */
+        }
+
+        .access-card i {
+            font-size: 4em; /* **Ukuran ikon diperbesar secara signifikan** */
+            color: var(--secondary-blue);
+        }
+
+        .access-card span {
+            font-size: 1.15em; /* Memperbesar ukuran teks agar lebih mudah dibaca */
+            line-height: 1.3;
+            max-width: 90%; /* Membatasi lebar teks agar tidak terlalu panjang */
+        }
+
+
+        /* Penyesuaian Responsif untuk Grid Akses Cepat */
+        @media (max-width: 992px) {
+            .quick-access-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 kolom di tablet */
+                gap: 25px;
+            }
+            .access-card {
+                padding: 35px 20px;
+                min-height: 200px;
+            }
+            .access-card i {
+                font-size: 3.5em;
+            }
+            .access-card span {
+                font-size: 1.1em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .quick-access-section {
+                padding: 60px 0;
+            }
+            .quick-access-section h2 {
+                font-size: 2em;
+                margin-bottom: 30px;
+            }
+            .quick-access-grid {
+                grid-template-columns: 1fr; /* 1 kolom di ponsel */
+                gap: 20px;
+            }
+            .access-card {
+                padding: 30px 15px;
+                min-height: 180px;
+            }
+            .access-card i {
+                font-size: 3em;
+            }
+            .access-card span {
+                font-size: 1em;
+            }
+        }
+
+        /* Report Gratification Section */
+        .report-gratification-section {
+            background-color: var(--primary-blue); /* Warna dasar jika gambar tidak dimuat atau untuk fallback */
+            
+            /* Opsi 1: Menggunakan pola gambar yang berulang */
+            background-image: url('https://chatgpt.com/backend-api/public_content/enc/eyJpZCI6Im1fNjg2ODk5Yzk1ODM4ODE5MTllMTE2NzI3N2MyNjMxMzE6ZmlsZV8wMDAwMDAwMDYwNWM2MWY4YjVlMzg4ODg0YTc5NmRhYiIsInRzIjoiNDg2NTc5IiwicCI6InB5aSIsInNpZyI6ImM5NzEyZjgyZTNlOTM2YzZjYTkxZTVjYjkwZmIwZmFhOTgxNWU1NTdjYTU3ODY0OTNiNTVkNzRiNDM4MWRjMGUiLCJ2IjoiMCIsImdpem1vX2lkIjpudWxsfQ=='); /* Ganti dengan path ke file gambar Anda (.svg atau .png) */
+            background-repeat: repeat; /* Penting untuk pola yang berulang */
+            background-position: center center; /* Memastikan pola dimulai dari tengah */
+        min-height: 700px;
+            /* background-size: cover; */ /* Bisa digunakan jika gambarnya bukan pola berulang dan ingin menutupi seluruh area */
+            
+            /* Opsi 2: Menggunakan gradien yang halus di atas warna biru */
+            /* Anda bisa memilih antara Opsi 1 atau Opsi 2, atau menggabungkannya jika ingin efek berlapis */
+            /* background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.05)), var(--primary-blue); */
+            /* Ini akan menambahkan lapisan gradien hitam semi-transparan di atas warna biru Anda */
+            /* Sesuaikan nilai RGBA untuk warna dan intensitas yang diinginkan */
+
+            /* Jika gambar pola Anda sudah transparan, Anda mungkin tidak perlu properti opacity ini */
+            /* opacity: 0.95; */ /* Anda bisa menyesuaikan opacity jika ingin seluruh bagian sedikit transparan */
+
+            padding: 60px 0;
+            color: var(--text-light);
+            text-align: center;
+            /* Properti lain yang sudah ada sebelumnya tetap dipertahankan */
+            /* display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap; */
+        }
+
+        .report-gratification-section .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .report-illustration {
+            max-width: 300px; /* Adjust size */
+            height: auto;
+            flex-shrink: 0;
+        }
+
+        .report-text {
+            max-width: 600px;
+            text-align: left;
+        }
+
+        .report-text h2 {
+            color: var(--text-light);
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            margin-top: 280px;
+        }
+
+        .report-text p {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .report-text p strong {
+            color: var(--accent-green);
+        }
+
+
+        /* News & Updates Section */
+        .news-updates-section {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .news-updates-section h2 {
+            margin-bottom: 40px;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .news-card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .news-card .card-content {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1; /* Allow content to grow */
+        }
+
+        .news-card h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .news-card .date {
+            font-size: 0.85em;
+            color: #666;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .news-card p {
+            font-size: 0.95em;
+            color: #555;
+            margin-bottom: 20px;
+            flex-grow: 1; /* Push read more to bottom */
+        }
+
+        .news-card .read-more {
+            font-weight: 600;
+            color: var(--secondary-blue);
+            align-self: flex-start; /* Align link to the left */
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .news-card .read-more i {
+            font-size: 0.8em;
+        }
+
+        .news-card.featured {
+            grid-column: span 2; /* Occupy 2 columns on larger screens */
+            display: flex;
+            flex-direction: row; /* Horizontal layout for featured */
+        }
+
+        .news-card.featured img {
+            width: 50%;
+            height: auto;
+            min-height: 300px;
+        }
+        .news-card.featured .card-content {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .news-card.featured h3 {
+            font-size: 2em; /* Larger font for featured */
+        }
+        .news-card.featured p {
+            font-size: 1.1em;
+        }
+
+        .view-all-news {
+            margin-top: 20px;
+        }
+
+        /* Footer */
+        .main-footer {
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+            padding: 50px 0 20px 0;
+            font-size: 0.9em;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-light);
+            opacity: 0.9;
+        }
+        .footer-col ul li a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .social-icons {
+            margin-top: 15px;
+            display: flex;
+            gap: 15px;
+        }
+        .social-icons a {
+            color: var(--text-light);
+            font-size: 1.4em;
+            opacity: 0.9;
+        }
+        .social-icons a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            text-align: center;
+        }
+        .footer-bottom p {
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Responsive Adjustments (Basic) */
+        @media (max-width: 992px) {
+            .main-nav .container ul {
+                gap: 20px;
+            }
+            .mega-menu {
+                min-width: unset;
+                width: 90%;
+                left: 5%;
+                transform: translateX(0);
+                flex-direction: column;
+                gap: 20px;
+            }
+            .mega-menu-column {
+                min-width: unset;
+            }
+            .hero-content h1 {
+                font-size: 2.5em;
+            }
+            .hero-content p {
+                font-size: 1em;
+            }
+            .hero-actions {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .news-card.featured {
+                flex-direction: column;
+                grid-column: span 1; /* Stack vertically on smaller screens */
+            }
+            .news-card.featured img,
+            .news-card.featured .card-content {
+                width: 100%;
+                min-height: auto;
+            }
+            .news-card.featured h3 {
+                font-size: 1.6em;
+            }
+            .report-gratification-section .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .report-text {
+                text-align: center;
+            }
+            .btn-report {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar .container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .top-right {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .top-left {
+                width: 100%;
+                justify-content: center;
+            }
+            .main-nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .main-nav ul li {
+                width: 45%; /* Approx two columns for main nav items */
+                text-align: center;
+            }
+            .main-nav .btn-login {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2em;
+            }
+            .quick-access-grid {
+                grid-template-columns: 1fr;
+            }
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        /* --- Styling Khusus Halaman Cek IMEI (imei-check.html) --- */
+
+        /* Section Utama Halaman */
+        .imei-check-section {
+            padding: 80px 0; /* Memberi ruang lebih di atas dan bawah */
+            background-color: var(--bg-light); /* Latar belakang abu-abu muda */
+            min-height: calc(100vh - var(--header-height, 120px) - var(--footer-height, 300px)); /* Pastikan ada tinggi minimum agar footer di bawah */
+            display: flex;
+            flex-direction: column; /* Konten di tengah akan tersusun vertikal */
+            align-items: center; /* Memusatkan konten utama secara horizontal */
+        }
+
+        /* Kartu Formulir IMEI */
+        .imei-card {
+            background-color: #fff;
+            padding: 50px; /* Padding lebih besar untuk kesan premium */
+            border-radius: 16px; /* Sudut lebih membulat */
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1); /* Bayangan lebih dalam */
+            max-width: 750px; /* Lebar maksimum kartu formulir */
+            margin: 0 auto 40px auto; /* Memusatkan kartu dan memberi margin bawah */
+            width: 100%;
+            box-sizing: border-box;
+            position: relative; /* Untuk potensi elemen desain di masa depan */
+        }
+
+        /* Breadcrumbs yang Lebih Elegan */
+        .breadcrumbs-v2 {
+            font-size: 0.9em;
+            margin-bottom: 30px;
+            text-align: left;
+            color: #888;
+        }
+
+        .breadcrumbs-v2 ol {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .breadcrumbs-v2 li a {
+            color: var(--secondary-blue);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .breadcrumbs-v2 li a:hover {
+            color: var(--primary-blue);
+        }
+
+        .breadcrumbs-v2 .separator {
+            margin: 0 8px;
+            color: #ccc;
+        }
+
+        .breadcrumbs-v2 li:last-child span {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        /* Judul dan Instruksi */
+        .imei-title {
+            font-size: 2.8em; /* Ukuran judul lebih besar */
+            color: var(--primary-blue);
+            text-align: center;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .imei-instructions {
+            font-size: 1.1em; /* Teks instruksi lebih besar */
+            color: var(--text-dark);
+            text-align: center;
+            margin-bottom: 50px; /* Jarak lebih besar sebelum form */
+            line-height: 1.6;
+            max-width: 600px; /* Batasi lebar teks untuk keterbacaan */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Grup Formulir */
+        .imei-form .form-group {
+            margin-bottom: 30px; /* Spasi antar grup input lebih besar */
+            text-align: left; /* Rata kiri untuk label dan input */
+        }
+
+        .imei-form .input-label {
+            display: block;
+            font-weight: 600; /* Label lebih tebal */
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+
+        .imei-form input[type="text"] {
+            width: 100%;
+            padding: 16px 20px; /* Padding lebih besar di input */
+            border: 1px solid var(--border-color);
+            border-radius: 10px; /* Sudut lebih membulat */
+            font-size: 1.15em; /* Ukuran font di input lebih besar */
+            color: var(--text-dark);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .imei-form input[type="text"]::placeholder {
+            color: #aaa; /* Warna placeholder lebih lembut */
+        }
+
+        .imei-form input[type="text"]:focus {
+            border-color: var(--secondary-blue);
+            box-shadow: 0 0 0 4px rgba(30, 144, 255, 0.25); /* Ring fokus lebih menonjol */
+            outline: none;
+        }
+
+        .input-hint {
+            font-size: 0.85em;
+            color: #888;
+            margin-top: 8px;
+            display: block;
+        }
+
+        /* CAPTCHA Styling yang lebih Sophisticated */
+        .captcha-group {
+            margin-top: 35px; /* Lebih banyak spasi di atas captcha */
+        }
+
+        .captcha-display-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 20px; /* Jarak antara kotak CAPTCHA dan inputnya */
+            margin-bottom: 15px; /* Jarak dari input CAPTCHA di bawahnya */
+            flex-wrap: wrap; /* Izinkan wrapping di layar kecil */
+        }
+
+        .captcha-image-box {
+            display: flex;
+            align-items: center;
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 10px 15px;
+            gap: 15px;
+            flex-shrink: 0; /* Mencegah kotak ini menyusut */
+        }
+
+        .captcha-image {
+            height: 48px; /* Tinggi gambar captcha lebih besar */
+            width: auto;
+            border-radius: 6px;
+            background-color: #eee; /* Fallback background jika gambar tidak dimuat */
+        }
+
+        .refresh-captcha {
+            background: none;
+            border: none;
+            color: var(--secondary-blue);
+            font-size: 1.4em; /* Ukuran ikon refresh lebih besar */
+            cursor: pointer;
+            transition: color 0.3s ease, transform 0.3s ease;
+            padding: 5px;
+        }
+
+        .refresh-captcha:hover {
+            color: var(--primary-blue);
+            transform: rotate(30deg); /* Animasi putar pada hover */
+        }
+
+        /* Form Actions (Button) */
+        .form-actions {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .submit-imei {
+            padding: 18px 40px; /* Padding lebih besar untuk tombol submit */
+            font-size: 1.2em; /* Teks tombol lebih besar */
+            font-weight: 700;
+            border-radius: 10px;
+            background-color: var(--secondary-blue); /* Gunakan secondary-blue untuk tombol utama di halaman internal */
+            border: 2px solid var(--secondary-blue);
+            color: white;
+            display: inline-flex; /* Untuk ikon di samping teks */
+            align-items: center;
+            gap: 10px;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .submit-imei:hover {
+            background-color: var(--primary-blue);
+            border-color: var(--primary-blue);
+            transform: translateY(-2px); /* Efek 'angkat' sedikit */
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+
+        .submit-imei i {
+            font-size: 0.9em;
+        }
+
+
+        /* Feedback Message Styling (untuk JavaScript) */
+        .feedback-message {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 1.1em;
+            display: none; /* Tersembunyi secara default */
+            border: 1px solid transparent; /* Untuk border default */
+            display: flex; /* Menggunakan flexbox untuk ikon dan teks */
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .feedback-message i {
+            font-size: 1.3em;
+        }
+
+        .feedback-message.success {
+            background-color: #e6ffe6;
+            color: #28a745;
+            border-color: #28a745;
+        }
+
+        .feedback-message.error {
+            background-color: #ffe6e6;
+            color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        /* Bagian "Bagaimana Cara Kerja?" (Opsional) */
+        .how-it-works-section {
+            background-color: #fff;
+            padding: 60px 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-light);
+            max-width: 900px; /* Lebih lebar dari kartu formulir jika diinginkan */
+            margin: 60px auto 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .how-it-works-section h3 {
+            font-size: 2.2em;
+            color: var(--primary-blue);
+            margin-bottom: 40px;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .step-item {
+            background-color: var(--bg-light);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .step-icon {
+            font-size: 2.5em;
+            color: var(--secondary-blue);
+            margin-bottom: 15px;
+        }
+
+        .step-item h4 {
+            font-size: 1.4em;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+
+        .step-item p {
+            font-size: 0.95em;
+            color: #555;
+            line-height: 1.5;
+        }
+
+
+        /* Responsivitas Halaman IMEI */
+        @media (max-width: 992px) {
+            .imei-card {
+                padding: 40px 30px;
+                max-width: 600px;
+            }
+            .imei-title {
+                font-size: 2.2em;
+            }
+            .imei-instructions {
+                font-size: 1em;
+            }
+            .imei-form input[type="text"] {
+                padding: 14px 18px;
+                font-size: 1.05em;
+            }
+            .how-it-works-section {
+                padding: 40px 25px;
+                margin-top: 40px;
+            }
+            .how-it-works-section h3 {
+                font-size: 1.8em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .imei-check-section {
+                padding: 40px 0;
+            }
+            .imei-card {
+                padding: 30px 20px;
+                margin: 0 15px 30px 15px; /* Margin di sisi untuk ponsel */
+            }
+            .imei-title {
+                font-size: 1.8em;
+            }
+            .imei-instructions {
+                font-size: 0.9em;
+                margin-bottom: 30px;
+            }
+            .captcha-display-wrapper {
+                flex-direction: column; /* Tumpuk CAPTCHA dan input di ponsel */
+                align-items: stretch; /* Rentangkan elemen */
+            }
+            .captcha-image-box {
+                width: 100%;
+                justify-content: center; /* Pusatkan gambar captcha */
+            }
+            .imei-form input[type="text"] {
+                font-size: 1em;
+            }
+            .submit-imei {
+                padding: 15px 30px;
+                font-size: 1.1em;
+                width: 100%; /* Tombol lebar penuh di ponsel */
+            }
+            .how-it-works-section {
+                padding: 30px 20px;
+                margin-top: 30px;
+            }
+            .steps-grid {
+                grid-template-columns: 1fr; /* Satu kolom di ponsel */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="top-bar">
+            <div class="container">
+                <div class="top-left">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgqN3Dr8ACC8WXBYn7PKhE4FNAHXAMZRx1t-5qUw3a2lCKGOV3eAJK2gj7tMYakJJJQULwWcS3zAyYir7SPvhVOfj6mRETCLzjym1JpDdnyopsisSgLGYFSdcWG8SAVoe6lLTRP9_nrfSGhTJOwu7qO6EoRfLu9QdFK-y6K2X6k1bNHsT0VkicIZZEF/w400-h248/Logo%20Dirjen%20Bea%20Cukai%20_logocorelCOM.png" alt="Logo Bea Cukai" class="logo">
+                    <span class="agency-name">Direktorat Jenderal Bea dan Cukai</span>
+                </div>
+                <div class="top-right">
+                    <a href="tel:1500225" class="hotline"><i class="fas fa-phone-alt"></i> 1500225</a>
+                    <a href="#" class="contact-link">Kontak Kami</a>
+                    <div class="lang-toggle">
+                        <a href="#" class="active">ID</a> | <a href="#">EN</a>
+                    </div>
+                    <button class="search-toggle"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <ul>
+                    <li><a href="index.html">Beranda</a></li>
+                    <li class="has-submenu">
+                        <a href="#">Layanan <i class="fas fa-chevron-down"></i></a>
+                        <div class="mega-menu">
+                            <div class="mega-menu-column">
+                                <h3>Layanan Publik</h3>
+                                <ul>
+                                    <li><a href="#"><i class="fas fa-box"></i> Importasi</a></li>
+                                    <li><a href="#"><i class="fas fa-plane-departure"></i> Exportasi</a></li>
+                                    <li><a href="#"><i class="fas fa-shipping-fast"></i> Pelacakan Kiriman</a></li>
+                                    <li><a href="imei-check.html"><i class="fas fa-mobile-alt"></i> Registrasi IMEI</a></li>
+                                </ul>
+                            </div>
+                            <div class="mega-menu-column">
+                                <h3>Layanan Informasi</h3>
+                                <ul>
+                                    <li><a href="#"><i class="fas fa-book"></i> Regulasi</a></li>
+                                    <li><a href="#"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                                    <li><a href="#"><i class="fas fa-graduation-cap"></i> Edukasi</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#">Regulasi & Informasi</a></li>
+                    <li><a href="#">Berita & Media</a></li>
+                    <li><a href="#">Tentang Kami</a></li>
+                    <li><a href="#" class="btn-login">Login / Daftar</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="imei-check-section">
+            <div class="container">
+                <div class="imei-card">
+                    <nav class="breadcrumbs-v2">
+                        <ol>
+                            <li><a href="index.html">Beranda</a></li>
+                            <li><span class="separator">/</span></li>
+                            <li><a href="#">Layanan</a></li>
+                            <li><span class="separator">/</span></li>
+                            <li><span>Cek IMEI</span></li>
+                        </ol>
+                    </nav>
+
+                    <h2 class="imei-title">Cek Status Registrasi IMEI Anda</h2>
+                    <p class="imei-instructions">Masukkan 15 digit nomor IMEI ponsel Anda untuk memeriksa status pendaftaran di sistem Bea Cukai. Pastikan IMEI yang dimasukkan sesuai dengan perangkat Anda.</p>
+
+                    <form class="imei-form">
+                        <div class="form-group">
+                            <label for="imeiInput" class="input-label">Nomor IMEI</label>
+                            <input type="text" id="imeiInput" name="imei" placeholder="Contoh: 123456789012345" maxlength="15" required>
+                            <small class="input-hint">Temukan IMEI Anda dengan menekan *#06# pada dialer ponsel.</small>
+                        </div>
+
+                        <div class="form-group captcha-group">
+                            <label for="captchaInput" class="input-label">Kode Keamanan</label>
+                            <div class="captcha-display-wrapper">
+                                <div class="captcha-image-box">
+                                    <img src="captcha-image.png" alt="Kode Keamanan" class="captcha-image" id="captchaImage">
+                                    <button type="button" class="refresh-captcha" aria-label="Segarkan Kode Keamanan">
+                                        <i class="fas fa-redo-alt"></i> </button>
+                                </div>
+                                <input type="text" id="captchaInput" name="captcha" placeholder="Isi kode di atas" required>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary submit-imei">Cek Status <i class="fas fa-arrow-right"></i></button>
+                        </div>
+
+                        <div id="imeiFeedback" class="feedback-message">
+                            </div>
+                    </form>
+                </div>
+
+                <div class="how-it-works-section">
+                    <h3>Bagaimana Cara Kerjanya?</h3>
+                    <div class="steps-grid">
+                        <div class="step-item">
+                            <div class="step-icon"><i class="fas fa-mobile-alt"></i></div>
+                            <h4>1. Dapatkan IMEI Anda</h4>
+                            <p>Tekan *#06# pada dialer ponsel Anda, atau cek di pengaturan perangkat.</p>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-icon"><i class="fas fa-keyboard"></i></div>
+                            <h4>2. Masukkan IMEI</h4>
+                            <p>Isi 15 digit nomor IMEI dan kode keamanan yang ditampilkan.</p>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-icon"><i class="fas fa-check-circle"></i></div>
+                            <h4>3. Cek Status</h4>
+                            <p>Sistem akan menampilkan apakah IMEI Anda terdaftar atau belum.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h4>Layanan</h4>
+                <ul>
+                    <li><a href="#">Importasi</a></li>
+                    <li><a href="#">Exportasi</a></li>
+                    <li><a href="#">Pelacakan Kiriman</a></li>
+                    <li><a href="imei-check.html">Registrasi IMEI</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Informasi</h4>
+                <ul>
+                    <li><a href="#">Regulasi</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Edukasi</a></li>
+                    <li><a href="#">Berita & Pengumuman</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Tentang Kami</h4>
+                <ul>
+                    <li><a href="#">Profil Bea Cukai</a></li>
+                    <li><a href="#">Struktur Organisasi</a></li>
+                    <li><a href="#">Visi & Misi</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Kontak & Sosial</h4>
+                <p>Hotline: 1500225</p>
+                <p>Email: info@beacukai.go.id</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2025 Direktorat Jenderal Bea dan Cukai. Hak Cipta Dilindungi Undang-Undang.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Simple JS for header search toggle and mega-menu (conceptual)
+        document.querySelector('.search-toggle').addEventListener('click', function() {
+            alert('Fungsi bilah pencarian akan muncul di sini!');
+        });
+
+        const hasSubmenus = document.querySelectorAll('.has-submenu');
+        hasSubmenus.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.querySelector('.mega-menu').style.display = 'flex';
+            });
+            item.addEventListener('mouseleave', () => {
+                item.querySelector('.mega-menu').style.display = 'none';
+            });
+        });
+
+        // Placeholder for CAPTCHA refresh and form submission logic
+        document.getElementById('refreshImage').addEventListener('click', function() {
+            // Logika untuk memuat ulang gambar CAPTCHA
+            alert('Gambar CAPTCHA akan di-refresh!');
+            // Contoh: this.src = 'captcha-image.png?' + new Date().getTime();
+        });
+
+        document.querySelector('.imei-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const feedbackDiv = document.getElementById('imeiFeedback');
+            feedbackDiv.style.display = 'block';
+            feedbackDiv.className = 'feedback-message'; // Reset classes
+            feedbackDiv.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sedang memproses...';
+
+            // Simulasi proses (ganti dengan AJAX/Fetch API yang sebenarnya)
+            setTimeout(() => {
+                const imei = document.getElementById('imeiInput').value;
+                const captcha = document.getElementById('captchaInput').value;
+
+                if (imei === '123456789012345' && captcha === '9939fa') { // Contoh validasi
+                    feedbackDiv.className = 'feedback-message success';
+                    feedbackDiv.innerHTML = '<i class="fas fa-check-circle"></i> IMEI Anda terdaftar dan valid.';
+                } else {
+                    feedbackDiv.className = 'feedback-message error';
+                    feedbackDiv.innerHTML = '<i class="fas fa-times-circle"></i> Nomor IMEI atau Kode Keamanan salah. Silakan coba lagi.';
+                }
+            }, 2000); // Simulasi penundaan 2 detik
+        });
+    </script>
+</body>
+</html>

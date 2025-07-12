@@ -1,0 +1,1008 @@
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bea Cukai - Beranda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Basic Resets & Global Styles */
+        :root {
+            --primary-blue: #0A3D62; /* Darker, official blue */
+            --secondary-blue: #1E90FF; /* Lighter, accent blue */
+            --accent-green: #32CD32; /* For CTAs, etc. */
+            --text-dark: #333;
+            --text-light: #f4f4f4;
+            --bg-light: #f9f9f9;
+            --border-color: #eee;
+            --shadow-light: 0 4px 10px rgba(0,0,0,0.08);
+
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #fff;
+            -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--secondary-blue);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--primary-blue);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            color: var(--primary-blue);
+            line-height: 1.2;
+            margin-bottom: 0.5em;
+        }
+
+        h1 { font-size: 2.8em; }
+        h2 { font-size: 2.2em; }
+        h3 { font-size: 1.6em; }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+            cursor: pointer;
+            font-size: 0.95em;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+            border: 2px solid var(--primary-blue);
+        }
+        .btn-primary:hover {
+            background-color: var(--secondary-blue);
+            border-color: var(--secondary-blue);
+            color: var(--text-light);
+        }
+
+        .btn-secondary {
+            background-color: var(--accent-green);
+            color: var(--text-light);
+            border: 2px solid var(--accent-green);
+        }
+        .btn-secondary:hover {
+            background-color: darken(var(--accent-green), 10%); /* conceptual darken */
+            border-color: darken(var(--accent-green), 10%);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+        .btn-outline:hover {
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+        }
+
+        .btn-report {
+            background-color: #FF4500; /* Orange-red for urgency */
+            color: var(--text-light);
+            border: 2px solid #FF4500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-report:hover {
+            background-color: #CD3700;
+            border-color: #CD3700;
+        }
+
+
+        /* Header */
+        .main-header {
+            box-shadow: var(--shadow-light);
+            background-color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+            padding: 8px 0;
+            font-size: 0.85em;
+        }
+
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-left, .top-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .top-left .logo {
+            height: 35px; /* Adjust as needed */
+            margin-right: 10px;
+        }
+
+        .top-left .agency-name {
+            font-weight: 500;
+        }
+
+        .top-right a {
+            color: var(--text-light);
+        }
+        .top-right a:hover {
+            opacity: 0.8;
+        }
+
+        .top-right .hotline {
+            font-weight: 500;
+        }
+        .top-right .hotline i {
+            margin-right: 5px;
+        }
+
+        .lang-toggle a {
+            font-weight: 600;
+        }
+        .lang-toggle a.active {
+            text-decoration: underline;
+        }
+
+        .search-toggle {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.1em;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .main-nav {
+            padding: 15px 0;
+        }
+
+        .main-nav .container ul {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .main-nav ul li a {
+            color: var(--primary-blue);
+            font-weight: 600;
+            padding: 10px 0;
+            display: block;
+            position: relative;
+        }
+
+        .main-nav ul li a:hover {
+            color: var(--secondary-blue);
+        }
+
+        .main-nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-blue);
+            left: 0;
+            bottom: 0;
+            transition: width 0.3s ease;
+        }
+
+        .main-nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .main-nav .btn-login {
+            background-color: var(--secondary-blue);
+            color: var(--text-light);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+        .main-nav .btn-login:hover {
+            background-color: var(--primary-blue);
+            color: var(--text-light); /* Maintain text color on hover */
+        }
+        .main-nav .btn-login::after { /* Remove underline for button */
+            display: none;
+        }
+
+        /* Mega Menu */
+        .main-nav .has-submenu {
+            position: relative;
+        }
+
+        .mega-menu {
+            display: none; /* Hidden by default, shown via JS on hover */
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #fff;
+            box-shadow: var(--shadow-light);
+            border-top: 3px solid var(--secondary-blue);
+            padding: 30px 40px; /* Increased padding slightly for more internal space */
+            min-width: 980px; /* **Increased significantly again to ensure ample space** */
+            border-radius: 0 0 8px 8px;
+            display: flex; /* Use flexbox for column layout */
+            flex-wrap: nowrap; /* Prevent columns from wrapping prematurely on desktop */
+            justify-content: center; /* Center columns, allowing natural spacing from gap */
+            gap: 60px; /* **Increased gap even more for clear separation** */
+            z-index: 999;
+            box-sizing: border-box; /* Crucial: ensure padding is included in width calculation */
+        }
+
+        .mega-menu-column {
+            flex: 0 0 400px; /* **More aggressive fixed width for each column** */
+            /* This ensures each column is exactly 400px wide and won't shrink below that. */
+            /* If content is wider than 400px, it will cause overflow within the column. */
+            /* If you want columns to be equal width but fill remaining space, use flex: 1 1 0%; */
+            /* But for avoiding overlap with known long text, fixed width is more reliable. */
+        }
+
+        .mega-menu-column h3 {
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+            white-space: nowrap; /* Prevent heading text from wrapping */
+        }
+
+        .mega-menu-column ul li {
+            margin-bottom: 10px; /* Increased spacing between list items */
+        }
+
+        .mega-menu-column ul li a {
+            color: var(--text-dark);
+            font-weight: 400;
+            padding: 5px 0;
+            display: flex; /* Use flexbox for icon and text alignment */
+            align-items: center;
+            gap: 15px; /* Space between icon and text */
+            /* white-space: nowrap; is crucial here if you want to prevent text wrapping
+            and ensure icons and text stay on one line, provided the column is wide enough.
+            Given the consistent overlap, let's enforce it here and ensure column width. */
+            white-space: nowrap; /* **Enforce no wrapping for the link text + icon** */
+            min-width: 0; /* Important for flex items to prevent overflow if content is huge */
+        }
+        .mega-menu-column ul li a:hover {
+            color: var(--secondary-blue);
+            text-decoration: underline;
+        }
+        .mega-menu-column ul li a::after {
+            display: none;
+        }
+
+        .mega-menu-column ul li a i {
+            color: var(--secondary-blue);
+            font-size: 1.25em;
+            flex-shrink: 0; /* Prevent icon from shrinking */
+            width: 30px; /* **Slightly larger fixed width for icons for better alignment** */
+            text-align: center; /* Center icon within its fixed width */
+        }
+
+        /* No explicit span needed if white-space: nowrap is on the 'a' tag.
+        If you remove white-space: nowrap from 'a', then wrap text in span and apply white-space: normal to span. */
+
+
+        /* Existing responsive adjustments for mega menu for smaller screens */
+        @media (max-width: 992px) {
+            .mega-menu {
+                min-width: unset;
+                width: 95%; /* Make it slightly wider on tablets/mobiles if needed */
+                left: 50%;
+                transform: translateX(-50%);
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+            .mega-menu-column {
+                min-width: unset;
+                flex: 1 1 auto; /* Allow columns to grow/shrink naturally when stacked */
+            }
+            .mega-menu-column ul li a {
+                white-space: normal; /* Allow text to wrap on smaller screens */
+            }
+        }
+
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://cdn0-production-images-kly.akamaized.net/bWIpXV2_FGr3mv8gq9SSDWt18rY=/1200x675/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/4865279/original/045722400_1718540358-bea_cukai.jpg') no-repeat center center/cover;
+            color: var(--text-light);
+            padding: 120px 0;
+            text-align: center;
+            min-height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content h1 {
+            color: var(--text-light);
+            font-size: 3.5em;
+            margin-bottom: 15px;
+        }
+
+        .hero-content p {
+            font-size: 1.2em;
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Quick Access Section */
+        .quick-access-section {
+            padding: 80px 0; /* Menambah padding di bagian atas/bawah agar lebih lega */
+            text-align: center;
+            background-color: var(--bg-light);
+        }
+
+        .quick-access-section h2 {
+            margin-bottom: 50px; /* Memberi lebih banyak ruang di bawah judul */
+            font-size: 2.5em; /* Membuat judul lebih menonjol */
+        }
+
+        .quick-access-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* **Mengatur 3 kolom yang sama lebarnya** */
+            gap: 30px; /* **Menambah jarak antar kartu** */
+            max-width: 1080px; /* Membatasi lebar maksimum grid agar tidak terlalu lebar di layar besar */
+            margin: 0 auto; /* Memposisikan grid di tengah */
+        }
+
+        .access-card {
+            background-color: #fff;
+            padding: 40px 25px; /* **Menambah padding untuk membuat kartu lebih besar** */
+            border-radius: 12px; /* Sedikit memperhalus sudut kartu */
+            box-shadow: var(--shadow-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* Memusatkan konten (ikon & teks) secara vertikal */
+            gap: 20px; /* **Menambah jarak antara ikon dan teks di dalam kartu** */
+            color: var(--primary-blue);
+            font-weight: 600;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            min-height: 220px; /* **Menjamin tinggi minimum kartu agar konsisten dan eye-catching** */
+        }
+
+        .access-card:hover {
+            transform: translateY(-8px); /* Efek hover yang lebih kentara */
+            box-shadow: 0 12px 25px rgba(0,0,0,0.18); /* Bayangan yang lebih kuat saat hover */
+        }
+
+        .access-card i {
+            font-size: 4em; /* **Ukuran ikon diperbesar secara signifikan** */
+            color: var(--secondary-blue);
+        }
+
+        .access-card span {
+            font-size: 1.15em; /* Memperbesar ukuran teks agar lebih mudah dibaca */
+            line-height: 1.3;
+            max-width: 90%; /* Membatasi lebar teks agar tidak terlalu panjang */
+        }
+
+
+        /* Penyesuaian Responsif untuk Grid Akses Cepat */
+        @media (max-width: 992px) {
+            .quick-access-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 kolom di tablet */
+                gap: 25px;
+            }
+            .access-card {
+                padding: 35px 20px;
+                min-height: 200px;
+            }
+            .access-card i {
+                font-size: 3.5em;
+            }
+            .access-card span {
+                font-size: 1.1em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .quick-access-section {
+                padding: 60px 0;
+            }
+            .quick-access-section h2 {
+                font-size: 2em;
+                margin-bottom: 30px;
+            }
+            .quick-access-grid {
+                grid-template-columns: 1fr; /* 1 kolom di ponsel */
+                gap: 20px;
+            }
+            .access-card {
+                padding: 30px 15px;
+                min-height: 180px;
+            }
+            .access-card i {
+                font-size: 3em;
+            }
+            .access-card span {
+                font-size: 1em;
+            }
+        }
+
+        /* Report Gratification Section */
+        .report-gratification-section {
+            background-color: var(--primary-blue); /* Warna dasar jika gambar tidak dimuat atau untuk fallback */
+            
+            /* Opsi 1: Menggunakan pola gambar yang berulang */
+            background-image: url('https://chatgpt.com/backend-api/public_content/enc/eyJpZCI6Im1fNjg2ODk5Yzk1ODM4ODE5MTllMTE2NzI3N2MyNjMxMzE6ZmlsZV8wMDAwMDAwMDYwNWM2MWY4YjVlMzg4ODg0YTc5NmRhYiIsInRzIjoiNDg2NTc5IiwicCI6InB5aSIsInNpZyI6ImM5NzEyZjgyZTNlOTM2YzZjYTkxZTVjYjkwZmIwZmFhOTgxNWU1NTdjYTU3ODY0OTNiNTVkNzRiNDM4MWRjMGUiLCJ2IjoiMCIsImdpem1vX2lkIjpudWxsfQ=='); /* Ganti dengan path ke file gambar Anda (.svg atau .png) */
+            background-repeat: repeat; /* Penting untuk pola yang berulang */
+            background-position: center center; /* Memastikan pola dimulai dari tengah */
+        min-height: 700px;
+            /* background-size: cover; */ /* Bisa digunakan jika gambarnya bukan pola berulang dan ingin menutupi seluruh area */
+            
+            /* Opsi 2: Menggunakan gradien yang halus di atas warna biru */
+            /* Anda bisa memilih antara Opsi 1 atau Opsi 2, atau menggabungkannya jika ingin efek berlapis */
+            /* background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.05)), var(--primary-blue); */
+            /* Ini akan menambahkan lapisan gradien hitam semi-transparan di atas warna biru Anda */
+            /* Sesuaikan nilai RGBA untuk warna dan intensitas yang diinginkan */
+
+            /* Jika gambar pola Anda sudah transparan, Anda mungkin tidak perlu properti opacity ini */
+            /* opacity: 0.95; */ /* Anda bisa menyesuaikan opacity jika ingin seluruh bagian sedikit transparan */
+
+            padding: 60px 0;
+            color: var(--text-light);
+            text-align: center;
+            /* Properti lain yang sudah ada sebelumnya tetap dipertahankan */
+            /* display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap; */
+        }
+
+        .report-gratification-section .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .report-illustration {
+            max-width: 300px; /* Adjust size */
+            height: auto;
+            flex-shrink: 0;
+        }
+
+        .report-text {
+            max-width: 600px;
+            text-align: left;
+        }
+
+        .report-text h2 {
+            color: var(--text-light);
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            margin-top: 280px;
+        }
+
+        .report-text p {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .report-text p strong {
+            color: var(--accent-green);
+        }
+
+
+        /* News & Updates Section */
+        .news-updates-section {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .news-updates-section h2 {
+            margin-bottom: 40px;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .news-card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .news-card .card-content {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1; /* Allow content to grow */
+        }
+
+        .news-card h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .news-card .date {
+            font-size: 0.85em;
+            color: #666;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .news-card p {
+            font-size: 0.95em;
+            color: #555;
+            margin-bottom: 20px;
+            flex-grow: 1; /* Push read more to bottom */
+        }
+
+        .news-card .read-more {
+            font-weight: 600;
+            color: var(--secondary-blue);
+            align-self: flex-start; /* Align link to the left */
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .news-card .read-more i {
+            font-size: 0.8em;
+        }
+
+        .news-card.featured {
+            grid-column: span 2; /* Occupy 2 columns on larger screens */
+            display: flex;
+            flex-direction: row; /* Horizontal layout for featured */
+        }
+
+        .news-card.featured img {
+            width: 50%;
+            height: auto;
+            min-height: 300px;
+        }
+        .news-card.featured .card-content {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .news-card.featured h3 {
+            font-size: 2em; /* Larger font for featured */
+        }
+        .news-card.featured p {
+            font-size: 1.1em;
+        }
+
+        .view-all-news {
+            margin-top: 20px;
+        }
+
+        /* Footer */
+        .main-footer {
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+            padding: 50px 0 20px 0;
+            font-size: 0.9em;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-light);
+            opacity: 0.9;
+        }
+        .footer-col ul li a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .social-icons {
+            margin-top: 15px;
+            display: flex;
+            gap: 15px;
+        }
+        .social-icons a {
+            color: var(--text-light);
+            font-size: 1.4em;
+            opacity: 0.9;
+        }
+        .social-icons a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            text-align: center;
+        }
+        .footer-bottom p {
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Responsive Adjustments (Basic) */
+        @media (max-width: 992px) {
+            .main-nav .container ul {
+                gap: 20px;
+            }
+            .mega-menu {
+                min-width: unset;
+                width: 90%;
+                left: 5%;
+                transform: translateX(0);
+                flex-direction: column;
+                gap: 20px;
+            }
+            .mega-menu-column {
+                min-width: unset;
+            }
+            .hero-content h1 {
+                font-size: 2.5em;
+            }
+            .hero-content p {
+                font-size: 1em;
+            }
+            .hero-actions {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .news-card.featured {
+                flex-direction: column;
+                grid-column: span 1; /* Stack vertically on smaller screens */
+            }
+            .news-card.featured img,
+            .news-card.featured .card-content {
+                width: 100%;
+                min-height: auto;
+            }
+            .news-card.featured h3 {
+                font-size: 1.6em;
+            }
+            .report-gratification-section .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .report-text {
+                text-align: center;
+            }
+            .btn-report {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar .container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .top-right {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .top-left {
+                width: 100%;
+                justify-content: center;
+            }
+            .main-nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .main-nav ul li {
+                width: 45%; /* Approx two columns for main nav items */
+                text-align: center;
+            }
+            .main-nav .btn-login {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2em;
+            }
+            .quick-access-grid {
+                grid-template-columns: 1fr;
+            }
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="top-bar">
+            <div class="container">
+                <div class="top-left">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgqN3Dr8ACC8WXBYn7PKhE4FNAHXAMZRx1t-5qUw3a2lCKGOV3eAJK2gj7tMYakJJJQULwWcS3zAyYir7SPvhVOfj6mRETCLzjym1JpDdnyopsisSgLGYFSdcWG8SAVoe6lLTRP9_nrfSGhTJOwu7qO6EoRfLu9QdFK-y6K2X6k1bNHsT0VkicIZZEF/w400-h248/Logo%20Dirjen%20Bea%20Cukai%20_logocorelCOM.png" alt="Logo Bea Cukai" class="logo">
+                    <span class="agency-name">Direktorat Jenderal Bea dan Cukai</span>
+                </div>
+                <div class="top-right">
+                    <a href="tel:1500225" class="hotline"><i class="fas fa-phone-alt"></i> 1500225</a>
+                    <a href="#" class="contact-link">Kontak Kami</a>
+                    <div class="lang-toggle">
+                        <a href="#" class="active">ID</a> | <a href="#">EN</a>
+                    </div>
+                    <button class="search-toggle"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <ul>
+                    <li><a href="#">Beranda</a></li>
+                    <li class="has-submenu">
+                        <a href="#">Layanan <i class="fas fa-chevron-down"></i></a>
+                        <div class="mega-menu">
+                            <div class="mega-menu-column">
+                                <h3>Layanan Publik</h3>
+                                <ul>
+                                    <li><a href="#"><i class="fas fa-box"></i> Importasi</a></li>
+                                    <li><a href="#"><i class="fas fa-plane-departure"></i> Exportasi</a></li>
+                                    <li><a href="#"><i class="fas fa-shipping-fast"></i> Pelacakan Kiriman</a></li>
+                                    <li><a href="#"><i class="fas fa-calculator"></i> Simulasi Bea Masuk</a></li>
+                                </ul>
+                            </div>
+                            <div class="mega-menu-column">
+                                <h3>Layanan Informasi</h3>
+                                <ul>
+                                    <li><a href="#"><i class="fas fa-book"></i> Regulasi</a></li>
+                                    <li><a href="#"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                                    <li><a href="#"><i class="fas fa-graduation-cap"></i> Edukasi</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#">Regulasi & Informasi</a></li>
+                    <li><a href="#">Berita & Media</a></li>
+                    <li><a href="#">Tentang Kami</a></li>
+                    <li><a href="#" class="btn-login">Login / Daftar</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-content container">
+                <h1>Mendorong Perdagangan, Mengamankan Negeri</h1>
+                <p>Bea Cukai: Mengawasi perbatasan, memfasilitasi perdagangan, melindungi masyarakat.</p>
+                <div class="hero-actions">
+                    <a href="#" class="btn btn-primary">Periksa Impor/Ekspor Anda</a>
+                    <a href="#" class="btn btn-secondary">Lapor Gratifikasi</a>
+                    <a href="#" class="btn btn-primary">Layanan Populer</a>
+                </div>
+            </div>
+            </section>
+
+        <section class="quick-access-section container">
+            <h2>Akses Cepat Layanan</h2>
+            <div class="quick-access-grid">
+                <a href="#" class="access-card">
+                    <i class="fas fa-id-card"></i>
+                    <span>Registrasi IMEI</span>
+                </a>
+                <a href="#" class="access-card">
+                    <i class="fas fa-truck"></i>
+                    <span>Tracking Kiriman</span>
+                </a>
+                <a href="#" class="access-card">
+                    <i class="fas fa-box-open"></i>
+                    <span>Cek Barang Penumpang</span>
+                </a>
+                <a href="#" class="access-card">
+                    <i class="fas fa-dollar-sign"></i>
+                    <span>Simulasi Bea Masuk</span>
+                </a>
+                <a href="#" class="access-card">
+                    <i class="fas fa-gavel"></i>
+                    <span>Lelang Barang</span>
+                </a>
+                <a href="#" class="access-card">
+                    <i class="fas fa-headset"></i>
+                    <span>Hubungi Kami</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="report-gratification-section">
+    <div class="container">
+        <div class="report-content">
+            <!--<img src="https://chatgpt.com/backend-api/public_content/enc/eyJpZCI6Im1fNjg2ODk5Yzk1ODM4ODE5MTllMTE2NzI3N2MyNjMxMzE6ZmlsZV8wMDAwMDAwMDYwNWM2MWY4YjVlMzg4ODg0YTc5NmRhYiIsInRzIjoiNDg2NTc5IiwicCI6InB5aSIsInNpZyI6ImM5NzEyZjgyZTNlOTM2YzZjYTkxZTVjYjkwZmIwZmFhOTgxNWU1NTdjYTU3ODY0OTNiNTVkNzRiNDM4MWRjMGUiLCJ2IjoiMCIsImdpem1vX2lkIjpudWxsfQ==" alt="Ilustrasi Anti Gratifikasi" class="report-illustration">!-->
+            <div class="report-text">
+                <h2>Tolak dan Lapor Gratifikasi</h2>
+                <p>Mari bersama kita bangun lingkungan pelayanan yang berintegritas dan bebas dari korupsi. Pelayanan ini **tidak dipungut biaya**.</p>
+                <a href="#" class="btn btn-report">Laporkan Sekarang <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <section class="news-updates-section container">
+            <h2>Berita & Pengumuman Terbaru</h2>
+            <div class="news-grid">
+                <article class="news-card featured">
+                    <img src="https://repository.beacukai.go.id/foto/2025/06/db4a35b9c0579f0f47e67a7c23648139-whatsapp-image-2025-06-26-at-13-13-02.jpeg" alt="Berita Utama 1">
+                    <div class="card-content">
+                        <h3>Bea Cukai Malang Musnahkan Jutaan Batang Rokok Ilegal</h3>
+                        <p class="date"><i class="far fa-calendar-alt"></i> 26 Juni 2025</p>
+                        <p>Bea Cukai Malang terus berkomitmen memberantas peredaran barang ilegal untuk melindungi masyarakat dan industri dalam negeri...</p>
+                        <a href="#" class="read-more">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <img src="https://repository.beacukai.go.id/foto/2025/06/db4a35b9c0579f0f47e67a7c23648139-whatsapp-image-2025-06-26-at-13-13-02.jpeg" alt="Berita 2">
+                    <div class="card-content">
+                        <h3>Dukungan Bea Cukai terhadap Ekspor UMKM di Jawa Timur</h3>
+                        <p class="date"><i class="far fa-calendar-alt"></i> 25 Juni 2025</p>
+                        <p>Melalui program asistensi, Bea Cukai membantu UMKM lokal menembus pasar internasional...</p>
+                        <a href="#" class="read-more">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <img src="https://repository.beacukai.go.id/foto/2025/06/db4a35b9c0579f0f47e67a7c23648139-whatsapp-image-2025-06-26-at-13-13-02.jpeg" alt="Berita 3">
+                    <div class="card-content">
+                        <h3>Sosialisasi Aturan Baru Impor Barang Kiriman Online</h3>
+                        <p class="date"><i class="far fa-calendar-alt"></i> 24 Juni 2025</p>
+                        <p>Bea Cukai mengadakan webinar untuk menjelaskan perubahan regulasi terkini...</p>
+                        <a href="#" class="read-more">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+            <div class="view-all-news">
+                <a href="#" class="btn btn-outline">Lihat Semua Berita <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </section>
+
+        </main>
+
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h4>Layanan</h4>
+                <ul>
+                    <li><a href="#">Importasi</a></li>
+                    <li><a href="#">Exportasi</a></li>
+                    <li><a href="#">Pelacakan Kiriman</a></li>
+                    <li><a href="#">Simulasi Bea Masuk</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Informasi</h4>
+                <ul>
+                    <li><a href="#">Regulasi</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Edukasi</a></li>
+                    <li><a href="#">Berita & Pengumuman</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Tentang Kami</h4>
+                <ul>
+                    <li><a href="#">Profil Bea Cukai</a></li>
+                    <li><a href="#">Struktur Organisasi</a></li>
+                    <li><a href="#">Visi & Misi</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Kontak & Sosial</h4>
+                <p>Hotline: 1500225</p>
+                <p>Email: info@beacukai.go.id</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2025 Direktorat Jenderal Bea dan Cukai. Hak Cipta Dilindungi Undang-Undang.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Simple JS for search toggle and mega-menu (conceptual)
+        document.querySelector('.search-toggle').addEventListener('click', function() {
+            alert('Search bar functionality would expand here!');
+            // In a real scenario, this would reveal an input field.
+        });
+
+        const hasSubmenus = document.querySelectorAll('.has-submenu');
+        hasSubmenus.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.querySelector('.mega-menu').style.display = 'flex';
+            });
+            item.addEventListener('mouseleave', () => {
+                item.querySelector('.mega-menu').style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
